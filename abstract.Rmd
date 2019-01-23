@@ -1,0 +1,17 @@
+---
+title: "Abstract"
+---
+
+## Reproducible Research with R and RStudio
+
+This hands-on workshop will teach you an efficient workflow for doing end-to-end data science with the R programming language. You'll learn to access data from a variety of sources (including csv files, excel spreadsheets, and databases); to understand data by visualizing it, trasnforming it, and modelling it with R's Tidyverse; and to communicate your results with R Markdown, R's authoring format for reproducible research. Along the way, you will enhance your work with interactive plots, dashboards, and RStudio Connect, a content hub for code based content. Bring your laptop!
+
+As you learn these tools, I'll highlight opportunities for reproducibility in your workflow. Not only is reproducibility good science (it makes your results easier to replicate), reproducibility is good self-care. It makes your work easier to share, hand off, automate, schedule, rerun with new data, and resume after a long hiatus.   
+
+The workshop will be led by Garrett Grolemund, RStudio's Master Instructor and the co-author of _R for Data Science_ and _R Markdown: The Definitive Guide_. I will assume that you have a basic knowledge of R syntax. For example, that you can load packages and run commands.
+
+
+
+
+
+
