@@ -1,0 +1,14 @@
+---
+title: "Abstract"
+---
+
+# Welcome to the Tidyverse: An Introduction to R for Data Science
+
+Looking for an effective way to learn R? This one day course will teach you a workflow for doing data science with the R language. It focuses on using R's Tidyverse, which is a core set of R packages that are known for their impressive performance and ease of use. We will focus on doing data science, not programming. You'll learn to:
+
+* Visualize data with R's ggplot2 package
+* Wrangle data with R's dplyr package
+* Fit models with base R, and 
+* Document your work reproducibly with R Markdown
+
+Along the way, you will practice using R's syntax, gaining comfort with R through many exercises and examples. Bring your laptop! The workshop will be taught by Garrett Grolemund, an award winning instructor and the co-author of _R for Data Science_.

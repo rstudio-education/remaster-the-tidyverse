@@ -1,0 +1,84 @@
+---
+title: "R Markdown"
+---
+
+This is an R Markdown file. It contains plain text interspersed with grey chunks of code. You can use the file to take notes _and_ run code. For example, you can write your name on the line below. Try it: 
+
+
+
+```{r}
+# You can write code in chunks that look like this.
+# This chunk uses the code plot(cars) to plot a data set.
+# To run the code, click the Green play button at the
+# top right of this chunk. Try it!
+plot(cars)
+```
+
+Good job! The results of a code chunk will appear beneath the chunk. You can click the x above the results to make them go away, but let's not do that.
+
+You can open a new R Markdown file by going to **File > New File > R Markdown...**. Then click OK. But let's not open a new file now—keep reading this one! 
+
+# Adding chunks
+
+To add a new code chunk, press *Cmd+Option+I* (*Ctrl+Alt+I* on Windows), or click the *Insert* button at the top of this document, then select *R*. R Markdown will add a new, empty chunk at your cursor's location.
+
+Try making a code chunk below:
+
+
+
+Good job! For today, you should place all of your R code inside of code chunks.
+
+```{r}
+# Sometimes you might want to run only some of the code 
+# in a code chunk. To do that, highlight the code to 
+# run and then press Cmd + Enter (Control + Enter on 
+# Windows). If you do not highlight any code, R will 
+# run the line of code that your cursor is on.
+# Try it now. Run mean(1:5) and nothing else.
+mean(1:5)
+stop("You shouldn't run this!")
+```
+
+```{r}
+# You can click the downward facing arrow to the left of the play button to run
+# every chunk above the current code chunk. This is useful if the code in your
+# chunk uses object that you made in previous chunks.
+# Sys.Date()
+```
+
+Did you notice the green lines in the code chunk above? They are *code comments*, lines of text that R ignores when it runs the code. R will treat everything that appears after `#` on a line as a code comment. As a result, if you run the chunk above, nothing will happen—it is all code comments (and that's fine)!
+
+Remove the `#` on the last line of the chunk above and then rerun the chunk. Can you tell what `Sys.Date()` does?
+
+By the way, you only need to use code comments _inside_ of code chunks. R knows not to try to run the text that you write outside of code chunks.
+
+# Text formatting
+
+Have you noticed the funny highlighting that appears in this document? R Markdown treats text surrounded by *asterisks*, **double asterisks**, and `backticks` in special ways. It is R Markdown's way of saying that these words are in
+
+- *italics*
+- **bold**, and
+- `code font`
+
+`*`, `**`, and \` are signals used by a text editing format known as `markdown`. R Markdown uses `markdown` to turn your plain looking .Rmd documents into polished reports. Let's give that a try.
+
+# Reports
+
+When you click the `knit` button at the top of an R Markdown file (like this one), R Markdown generates a polished copy of your report. R Markdown:
+
+1. Transforms all of your markdown cues into actual formatted text (e.g. bold text, italic text, etc.)
+2. Reruns all of your code chunks in a clean R session and appends the results to the finished report.
+3. Saves the finished report alongside your .Rmd file
+
+Click the *knit* button at the top of this document or press *Cmd+Shift+K* (*Ctrl+Shift+K* on Windows) to render the finished report. The RStudio IDE will open the report so you can see its contents. For now, our reports will be HTML files. Try clicking *Knit* now.
+
+Good job! You'll learn more about R Markdown throughout the day!
+
+# R Packages
+
+Here is one last code chunk that we will use in the next exercise. If you uncomment the code and try to run it, it won't work. If you don't believe me try!
+
+
+```{r}
+# ggplot(data = diamonds) + geom_point(aes(x = carat, y = price))
+```

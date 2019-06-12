@@ -1,0 +1,85 @@
+---
+title: "Models"
+---
+
+```{r setup, message=FALSE}
+library(tidyverse)
+library(modelr)
+library(broom)
+
+wages <- heights %>% filter(income > 0)
+```
+
+## Your Turn 1
+
+Fit the model on the slide and then examine the output. What does it look like?
+
+```{r}
+
+```
+
+## Your Turn 2
+
+Use a pipe to model `log(income)` against `height`. Then use broom and dplyr functions to extract:
+
+1. The **coefficient estimates** and their related statistics 
+2. The **adj.r.squared** and **p.value** for the overall model
+
+```{r}
+
+```
+
+
+## Your Turn 3
+
+Model `log(income)` against `education` and `height` and `sex`. Can you interpret the coefficients?
+
+```{r}
+
+```
+
+## Your Turn 4
+
+Add `+ geom_smooth(model = lm)` to the code below. What happens?
+
+```{r}
+wages %>%
+     ggplot(aes(x = height, y = log(income))) +
+     geom_point(alpha = 0.1)
+```
+
+## Help Me
+
+```{r}
+
+```
+
+
+## Your Turn 5
+
+Use `gather_residuals` to complete the code below, which compares the residuals of all three models, `mod_h`, `mod_eh`, and `mod_ehs`.
+
+```{r warning = FALSE, message = FALSE}
+
+# In case you haven't made the three models
+mod_h <- wages %>% lm(log(income) ~ height, data = .)
+mod_eh <- wages %>% lm(log(income) ~ education + height, data = .)
+mod_ehs <- wages %>% lm(log(income) ~ education + height + sex, data = .)
+
+# Be sure to remove or comment out each _ before running the code
+wages %>% 
+  _____________(______, ______, ______) %>% 
+  ggplot() ___ 
+    geom_histogram(aes(x = ______)) +
+    facet_grid(_____ ~ .)
+```
+
+***
+
+# Take Aways
+
+* Use `glance()`, `tidy()`, and `augment()` from the **broom** package to return model values in a data frame.
+
+* Use `add_predictions()` or `gather_predictions()` or `spread_predictions()` from the **modelr** package to visualize predictions.
+
+* Use `add_residuals()` or `gather_residuals()` or `spread_residuals()` from the **modelr** package to visualize residuals.

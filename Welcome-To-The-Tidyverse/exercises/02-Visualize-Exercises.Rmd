@@ -1,0 +1,109 @@
+---
+title: "Visualize Data"
+---
+
+## Your Turn 0
+
+Add a setup chunk that loads the tidyverse packages.
+
+
+
+
+```{r}
+mpg
+```
+
+
+## Your Turn 1
+
+Run the code on the slide to make a graph. Pay strict attention to spelling, capitalization, and parentheses!
+
+```{r}
+
+```
+
+## Your Turn 2
+
+Add `color`, `size`, `alpha`, and `shape` aesthetics to your graph. Experiment.  
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy))
+```
+
+## Help Me
+
+What do `facet_grid()` and `facet_wrap()` do? 
+(run the code, interpret, convince your group)
+
+```{r}
+# Makes a plot that the commands below will modify
+q <- ggplot(mpg) + geom_point(aes(x = displ, y = hwy))
+
+q + facet_grid(. ~ cyl)
+q + facet_grid(drv ~ .)
+q + facet_grid(drv ~ cyl)
+q + facet_wrap(~ class)
+```
+
+
+## Your Turn 3
+
+Replace this scatterplot with one that draws boxplots. Use the cheatsheet. Try your best guess.
+
+```{r}
+ggplot(mpg) + geom_point(aes(class, hwy))
+```
+
+## Your Turn 4
+
+Make a histogram of the `hwy` variable from `mpg`. Hint: do not supply a y variable.
+
+```{r}
+
+```
+
+## Your Turn 5
+
+Use the help page for `geom_histogram` to make the bins 2 units wide.
+
+```{r}
+
+```
+
+## Your Turn 6
+
+Make a bar chart `hwy` colored by `class`. Use the help page for `geom_bar` to choose a "color" aesthetic for class.
+
+```{r}
+
+```
+
+## Quiz
+
+What will this code do?
+
+```{r}
+ggplot(mpg) + 
+  geom_point(aes(displ, hwy)) +
+  geom_smooth(aes(displ, hwy))
+```
+
+## Your Turn 7
+
+What does `getwd()` return?
+
+```{r}
+
+```
+
+***
+
+# Take aways
+
+You can use this code template to make thousands of graphs with **ggplot2**.
+
+```{r eval = FALSE}
+ggplot(data = <DATA>) +
+  <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+```

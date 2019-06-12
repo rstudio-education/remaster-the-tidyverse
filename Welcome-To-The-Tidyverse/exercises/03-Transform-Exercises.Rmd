@@ -1,0 +1,180 @@
+---
+title: "Transform Data"
+---
+
+```{r setup}
+library(tidyverse)
+
+# Toy datasets to use
+
+pollution <- tribble(
+       ~city,   ~size, ~amount, 
+  "New York", "large",      23,
+  "New York", "small",      14,
+    "London", "large",      22,
+    "London", "small",      16,
+   "Beijing", "large",      121,
+   "Beijing", "small",      56
+)
+```
+
+# Import Data
+
+## Your Turn 1
+
+Import the `babynames.csv` dataset, which is in the 02-Transform-Data folder, as `babynames`. Then copy the import code into the code chunk below. Does it run?
+
+```{r}
+
+```
+
+```{r}
+babynames
+```
+
+# dplyr
+
+## Your Turn 2
+
+Alter the code to select just the `n` column:
+
+```{r}
+select(babynames, name, prop)
+```
+
+## Quiz
+
+Which of these is NOT a way to select the `name` and `n` columns together?
+
+```{r}
+select(babynames, -c(year, sex, prop))
+select(babynames, name:n)
+select(babynames, starts_with("n"))
+select(babynames, ends_with("n"))
+```
+
+## Your Turn 3
+
+Use `filter`, `babynames`, and the logical operators to find:
+
+* All of the names where prop is greater than or equal to 0.08  
+* All of the children named "Sea"  
+
+```{r}
+
+```
+
+## Your Turn 4
+
+Use Boolean operators to alter the code below to return only the rows that contain:
+
+* Girls named Sea  
+* Names that were used by exactly 5 or 6 children in 1880  
+* Names that are one of Acura, Lexus, or Yugo
+
+```{r}
+filter(babynames, name == "Sea" | name == "Anemone")
+```
+
+## Your Turn 5
+
+Use `desc()` and `arrange()` to find:
+
+- the highest value of `n`
+- the highest value of `prop`
+
+```{r}
+
+```
+
+## Your Turn 6
+
+Use `%>%` to write a sequence of functions that: 
+
+1. Filters babynames to just the girls that were born in 2017, *then...*  
+2. Selects the `name` and `n` columns, *then...*  
+3. Arranges the results so that the most popular names are near the top.
+
+```{r}
+
+```
+
+## Exam
+
+1. Trim `babynames` to just the rows that contain your `name` and your `sex`  
+2. Trim the result to just the columns that will appear in your graph (not strictly necessary, but useful practice)  
+3. Plot the results as a line graph with `year` on the x axis and `prop` on the y axis
+
+```{r}
+
+```
+
+## Your Turn 7
+
+Copmplete the code below to extract the rows where `name == "Khaleesi"`. Then use `summarise()` and `sum()` and `min()` to find:
+
+1. The total number of children named Khaleesi
+2. The first year Khaleesi appeared in the data
+
+*(Hint: Be sure to remove each `_` before running the code)*
+
+```{r}
+babynames ___ 
+  filter(_______________________) ___
+  ___________(total = ________, first = _______)
+```
+
+## Your Turn 8
+
+Use `group_by()`, `summarise()`, and `arrange()` to display the ten most popular names. Compute popularity as the *total* number of children of a single gender given a name.
+
+*(Hint: Be sure to remove each `_` before running the code)*
+
+```{r}
+babynames %>%
+  _______(name, sex) %>% 
+  _______(total = _____(n)) %>% 
+  _______(desc(_____))
+```
+
+## Your Turn 9
+
+Use `group_by()` to calculate and then plot the total number of children born each year over time.
+
+```{r}
+
+```
+
+## Your Turn 10
+
+Fill in the blanks to: 
+Derive each name's rank _within its year and sex_. 
+And then compute the median rank _for each combination of name and sex_, and arrange the results from highest median rank to lowest.
+
+*(Hint: Be sure to remove each `_` before running the code)*
+
+```{r}
+babynames %>% 
+  group_by(____, ____) %>% 
+  mutate(rank = ________(____(prop))) %>% 
+  group_by(____, ____) %>% 
+  ________(score = ______(_____)) %>% 
+  arrange(score)
+
+```
+
+***
+
+# Take aways
+
+* Extract variables with `select()`  
+* Extract cases with `filter()`  
+* Arrange cases, with `arrange()`  
+
+* Make tables of summaries with `summarise()`  
+* Make new variables, with `mutate()`  
+* Do groupwise operations with `group_by()`
+
+* Connect operations with `%>%`  
+
+

@@ -1,0 +1,42 @@
+---
+title: "Garrett"
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(babynames)
+
+name_data <- 
+  babynames %>% 
+  filter(name == "Garrett")
+
+# Total number of children
+n <- sum(name_data$n)
+
+# most$year is most popular year
+# most$n is the number of children that year
+most <- name_data %>% 
+  group_by(year) %>% 
+  summarise(n = sum(n)) %>% 
+  filter(n == max(n))
+
+# Has the name been a boy's or girl's name?
+sex <-
+  name_data %>% 
+  group_by(sex) %>% 
+  summarise(n = sum(n)) %>% 
+  filter(n == max(n)) %>% 
+  pull("sex") %>% 
+  switch("M" = "boy's", "F" = "girl's")
+```
+
+There have been **TODO** children named Garrett. The name Garrett was most popular in TODO, when TODO children were named Garrett. Garrett is traditionally a TODO name.
+
+```{r}
+name_data %>% 
+  ggplot(mapping = aes(x = year, y = prop, color = sex)) +
+    geom_line() +
+    labs(title = "Proportion of children named Garrett")
+```
+
+
