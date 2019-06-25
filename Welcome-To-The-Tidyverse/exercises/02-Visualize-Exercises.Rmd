@@ -89,6 +89,19 @@ ggplot(mpg) +
   geom_smooth(aes(displ, hwy))
 ```
 
+## Quiz
+
+What is different about this plot? Run the code!
+
+```{r}
+p <- ggplot(mpg) + 
+  geom_point(aes(displ, hwy)) +
+  geom_smooth(aes(displ, hwy))
+
+library(plotly)
+ggplotly(p)
+```
+
 ## Your Turn 7
 
 What does `getwd()` return?

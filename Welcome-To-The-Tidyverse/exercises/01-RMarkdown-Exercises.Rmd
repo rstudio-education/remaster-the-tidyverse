@@ -34,9 +34,9 @@ Good job! For today, you should place all of your R code inside of code chunks.
 # run and then press Cmd + Enter (Control + Enter on 
 # Windows). If you do not highlight any code, R will 
 # run the line of code that your cursor is on.
-# Try it now. Run mean(1:5) and nothing else.
+# Try it now. Run mean(1:5) but not the line below.
 mean(1:5)
-stop("You shouldn't run this!")
+warning("You shouldn't run this!")
 ```
 
 ```{r}

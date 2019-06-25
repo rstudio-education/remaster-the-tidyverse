@@ -2,15 +2,27 @@
 title: "Models"
 ---
 
-```{r setup, message=FALSE}
+```{r setup}
 library(tidyverse)
 library(modelr)
 library(broom)
 
-wages <- heights %>% filter(income > 0)
+# Import wages here
+
+# Fall back in case you cannot load wages
+# wages <- heights %>%
+#   filter(income > 0) %>%
+#   mutate(marital = as.character(marital),
+#          sex = as.character(sex))
 ```
 
 ## Your Turn 1
+
+* Change the working directory to `04-Models`. 
+* Then import `wages.xlsx` as wages and *copy the code to your setup chunk*.
+* Be sure to set NA: to NA.
+
+## Your Turn 2
 
 Fit the model on the slide and then examine the output. What does it look like?
 
@@ -18,7 +30,7 @@ Fit the model on the slide and then examine the output. What does it look like?
 
 ```
 
-## Your Turn 2
+## Your Turn 3
 
 Use a pipe to model `log(income)` against `height`. Then use broom and dplyr functions to extract:
 
@@ -30,7 +42,7 @@ Use a pipe to model `log(income)` against `height`. Then use broom and dplyr fun
 ```
 
 
-## Your Turn 3
+## Your Turn 4
 
 Model `log(income)` against `education` and `height` and `sex`. Can you interpret the coefficients?
 
@@ -38,7 +50,7 @@ Model `log(income)` against `education` and `height` and `sex`. Can you interpre
 
 ```
 
-## Your Turn 4
+## Your Turn 5
 
 Add `+ geom_smooth(model = lm)` to the code below. What happens?
 
@@ -55,7 +67,7 @@ wages %>%
 ```
 
 
-## Your Turn 5
+## Your Turn 6
 
 Use `gather_residuals` to complete the code below, which compares the residuals of all three models, `mod_h`, `mod_eh`, and `mod_ehs`.
 

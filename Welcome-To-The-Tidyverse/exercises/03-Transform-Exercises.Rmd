@@ -16,13 +16,15 @@ pollution <- tribble(
    "Beijing", "large",      121,
    "Beijing", "small",      56
 )
+
+# library(babynames)
 ```
 
 # Import Data
 
 ## Your Turn 1
 
-Import the `babynames.csv` dataset, which is in the 02-Transform-Data folder, as `babynames`. Then copy the import code into the code chunk below. Does it run?
+Set the working directory to `03-Transform`. Then import the `babynames.csv` data set, which is in the `03-Transform` folder, as `babynames`. Then copy the import code into the code chunk below. Does it run?
 
 ```{r}
 
@@ -68,26 +70,24 @@ Use `filter`, `babynames`, and the logical operators to find:
 
 Use Boolean operators to alter the code below to return only the rows that contain:
 
-* Girls named Sea  
+* _Boys_ named Sue  
 * Names that were used by exactly 5 or 6 children in 1880  
 * Names that are one of Acura, Lexus, or Yugo
 
 ```{r}
-filter(babynames, name == "Sea" | name == "Anemone")
+
 ```
 
-## Your Turn 5
+## Help Me
 
-Use `desc()` and `arrange()` to find:
-
-- the highest value of `n`
-- the highest value of `prop`
+What is the smallest value of n?
+What is the largest?
 
 ```{r}
 
 ```
 
-## Your Turn 6
+## Your Turn 5
 
 Use `%>%` to write a sequence of functions that: 
 
@@ -99,14 +99,17 @@ Use `%>%` to write a sequence of functions that:
 
 ```
 
-## Exam
+## Your Turn 6 - Exam
 
 1. Trim `babynames` to just the rows that contain your `name` and your `sex`  
 2. Trim the result to just the columns that will appear in your graph (not strictly necessary, but useful practice)  
 3. Plot the results as a line graph with `year` on the x axis and `prop` on the y axis
 
 ```{r}
-
+babynames %>% 
+  filter(name == "iris") %>% 
+  ggplot() +
+    geom_line(aes(x = year, y = prop, color = sex))
 ```
 
 ## Your Turn 7
