@@ -107,9 +107,13 @@ Use `%>%` to write a sequence of functions that:
 
 ```{r}
 babynames %>% 
-  filter(name == "iris") %>% 
-  ggplot() +
-    geom_line(aes(x = year, y = prop, color = sex))
+  group_by(year, sex) %>% 
+  mutate(rank = min_rank(desc(n))) %>% 
+  filter(name == "Garrett") %>% 
+  ggplot(aes(x = year, y = 17628 - rank)) +
+    geom_hline(yintercept = 17628/2, color = "grey50") +
+    geom_line(aes(color = sex)) +
+    coord_cartesian(ylim = c(0, 17628))
 ```
 
 ## Your Turn 7
