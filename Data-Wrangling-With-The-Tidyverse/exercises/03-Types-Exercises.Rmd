@@ -1,0 +1,136 @@
+---
+title: "Data Types"
+---
+
+```{r setup}
+library(tidyverse)
+library(babynames)
+library(nycflights13)
+library(stringr)
+library(forcats)
+library(lubridate)
+library(hms)
+```
+
+# Logicals
+
+## Your Turn 1
+
+Use `flights` to create `delayed`, a variable that displays whether a flight was delayed (`arr_delay > 0`).
+
+Then, remove all rows that contain an NA in `delayed`. 
+
+Finally, create a summary table that shows:
+
+1. How many flights were delayed  
+2. What proportion of flights were delayed
+
+```{r}
+
+```
+
+# Strings
+
+## Your Turn 2
+
+In your group, fill in the blanks to:
+
+1. Isolate the last letter of every name 
+
+2. Create a logical variable that displays whether the last letter is one of "a", "e", "i", "o", "u", or "y".  
+
+3. Use a weighted mean to calculate the proportion of children whose name ends in a vowel (by `year` and `sex`)   
+4. and then display the results as a line plot.
+
+*(Hint: Be sure to remove each `_` before running the code)*
+
+```{r}
+babynames %>%
+  _______(last = _________, 
+          vowel = __________) %>%
+  group_by(__________) %>%
+  _________(p_vowel = weighted.mean(vowel, n)) %>%
+  _________ +
+  __________
+```
+
+# Factors
+
+## Your Turn 3
+
+Repeat the demonstration, some of whose code is below, to make a sensible graph of average TV consumption by marital status.
+
+*(Hint: Be sure to remove each `_` before running the code)*
+
+```{r}
+gss_cat %>%
+  filter(_is.na(________)) %>%
+  group_by(________) %>%
+  summarise(_________________) %>%
+  ggplot() +
+    geom_point(mapping = aes(x = _______, y = _________________________))
+```
+
+## Your Turn 4
+
+Do you think liberals or conservatives watch more TV?
+Compute average tv hours by party ID an then plot the results.
+
+```{r}
+
+```
+
+# Dates and Times
+
+## Your Turn 5
+
+What is the best time of day to fly?
+
+Use the `hour` and `minute` variables in `flights` to make a new variable that shows the time of each flight as an hms. 
+
+Then use a smooth line to plot the relationship between time of day and `arr_delay`.
+
+```{r}
+
+```
+
+## Your Turn 6
+
+What is the best day of the week to fly?
+
+Look at the code skeleton for Your Turn 7. Discuss with your neighbor:
+
+* What does each line do?
+* What will the missing parts need to do?
+
+## Your Turn 7
+
+Fill in the blank to:
+
+Extract the day of the week of each flight (as a full name) from `time_hour`. 
+
+Plot the average arrival delay by day as a column chart (bar chart).
+
+```{r}
+flights %>% 
+  mutate(weekday = _______________________________) %>% 
+  group_by(weekday) %>% 
+  filter(!is.na(arr_delay)) %>% 
+  summarise(avg_delay = mean(arr_delay)) %>% 
+  ggplot() +
+    geom_col(mapping = aes(x = weekday, y = avg_delay))
+```
+
+***
+
+# Take Aways
+
+Dplyr gives you three _general_ functions for manipulating data: `mutate()`, `summarise()`, and `group_by()`. Augment these with functions from the packages below, which focus on specific types of data.
+
+Package   | Data Type
+--------- | --------
+stringr   | strings
+forcats   | factors
+hms       | times
+lubridate | dates and times
+

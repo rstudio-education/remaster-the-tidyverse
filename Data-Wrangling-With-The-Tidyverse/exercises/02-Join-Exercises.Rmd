@@ -1,0 +1,115 @@
+---
+title: "Join Data with dplyr"
+---
+
+```{r setup}
+library(tidyverse)
+library(nycflights13)
+
+band <- tribble(
+   ~name,     ~band,
+  "Mick",  "Stones",
+  "John", "Beatles",
+  "Paul", "Beatles"
+)
+
+instrument <- tribble(
+    ~name,   ~plays,
+   "John", "guitar",
+   "Paul",   "bass",
+  "Keith", "guitar"
+)
+
+instrument2 <- tribble(
+    ~artist,   ~plays,
+   "John", "guitar",
+   "Paul",   "bass",
+  "Keith", "guitar"
+)
+```
+
+# nycflights13
+
+```{r}
+View(flights)
+```
+
+```{r}
+View(airlines)
+```
+
+# mutating joins
+
+```{r}
+band %>% left_join(instrument, by = "name")
+band %>% right_join(instrument, by = "name")
+band %>% full_join(instrument, by = "name")
+band %>% inner_join(instrument, by = "name")
+```
+
+
+## Your Turn 1
+
+Which airlines had the largest arrival delays? Complete the code below.
+
+1. Join `airlines` to `flights`
+2. Compute and order the average arrival delays by airline. Display full names, no codes.
+
+*(Hint: Be sure to remove each `_` before running the code)*
+
+```{r}
+flights %>%
+  filter(!is.na(arr_delay)) %>%
+  __________________  %>%
+  group_by(_________) %>%
+  __________________  %>%
+  arrange(__________) 
+```
+
+
+## Your Turn 2
+
+Use `flights` and `airports` to compute the `distance` and average `arr_delay` by destination airport (names only, not codes).  Order by average delay, worst to best.
+
+*Hint: use `first()` to get distance. It returns the first value in a column.*
+*(Hint: Be sure to remove each `_` before running the code)*
+
+```{r}
+flights %>% 
+  filter(!is.na(arr_delay)) %>%
+  ______(airports, __________________) %>%
+  group_by(name) %>%
+  summarise(distance = _____________, 
+               delay = _____________) %>%
+  ______(_____(delay))
+```
+
+# filtering joins
+
+```{r}
+band %>% semi_join(instrument, by = "name")
+band %>% anti_join(instrument, by = "name")
+```
+
+## Your Turn 3
+
+How many airports in `airports` are serviced by flights originating in New York (i.e. flights in our dataset?) Notice that the column to join on is named `faa` in the **airports** data set and `dest` in the **flights** data set.
+
+```{r}
+__________ %>%
+ _________(_________, by = ___________) %>%
+  distinct(faa)
+```
+
+
+# Take aways
+
+* `left_join()` retains all cases in _left_ data set
+* `right_join()` retains all cases in _right_ data set
+* `full_join()` retains all cases in _either_ data set
+* `inner_join()` retains _only_ cases in _both_ data sets
+
+* `semi_join()` extracts cases that _have_ a match
+* `anti_join()` extracts cases that _do not have_ a match 
+
+

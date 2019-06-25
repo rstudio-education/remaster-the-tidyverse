@@ -1,0 +1,129 @@
+---
+title: "Tidy Data"
+---
+
+```{r setup}
+library(tidyverse)
+library(babynames)
+
+# Toy data
+cases <- tribble(
+  ~Country, ~"2011", ~"2012", ~"2013",
+      "FR",    7000,    6900,    7000,
+      "DE",    5800,    6000,    6200,
+      "US",   15000,   14000,   13000
+)
+
+pollution <- tribble(
+       ~city, ~size, ~amount,
+  "New York", "large",      23,
+  "New York", "small",      14,
+    "London", "large",      22,
+    "London", "small",      16,
+   "Beijing", "large",     121,
+   "Beijing", "small",     121
+)
+
+names(who) <- stringr::str_replace(names(who), 
+                                   "newrel", 
+                                   "new_rel")
+```
+
+```{r}
+table1
+table2
+table3
+table4a
+table4b
+table5
+```
+
+# tidyr
+
+
+## Your Turn 1
+
+On a sheet of paper, draw how the cases data set would look if it had the same values grouped into three columns: **country**, **year**, **n**
+
+## Your Turn 2
+
+Use `gather()` to reorganize `table4a` into three columns: **country**, **year**, and **cases**.
+
+```{r}
+
+```
+
+## Your Turn 3
+
+On a sheet of paper, draw how this data set would look if it had the same values grouped into three columns: **city**, **large**, **small**
+
+## Your Turn 4
+
+Use `spread()` to reorganize `table2` into four columns: **country**, **year**, **cases**, and **population**.
+
+```{r}
+
+```
+
+# who
+
+
+## Your Turn 5
+
+Gather the 5th through 60th columns of `who` into a pair of key:value columns named `codes` and `n`.
+
+Then select just the `county`, `year`, `codes` and `n` variables.
+
+```{r}
+who
+```
+
+
+## Your Turn 6
+
+Separate the `sexage` column into `sex` and `age` columns.
+
+*(Hint: Be sure to remove each `_` before running the code)*
+
+```{r}
+who %>%
+  gather("codes", "n", 5:60) %>%
+  select(-iso2, -iso3) %>%
+  separate(codes, c("new", "type", "sexage"), sep = "_") %>%
+  select(-new) %>% 
+  _______________________________
+```
+
+
+# Reshaping Final Exam
+
+## Your Turn 7
+
+Extend this code to reshape the data into a data set with three columns:
+
+1. `year`
+2. `M`
+3. `F`
+
+Calculate the percent of male (or female) children by year. Then plot the percent over time.
+
+```{r}
+babynames %>%
+  group_by(year, sex) %>% 
+  summarise(n = sum(n))
+```
+
+***
+
+# Take Aways
+
+Data comes in many formats but R prefers just one: _tidy data_.
+
+A data set is tidy if and only if:
+
+1. Every variable is in its own column
+2. Every observation is in its own row
+3. Every value is in its own cell (which follows from the above)
+
+What is a variable and an observation may depend on your immediate goal.
+

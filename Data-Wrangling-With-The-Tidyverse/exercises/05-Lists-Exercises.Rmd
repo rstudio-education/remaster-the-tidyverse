@@ -1,0 +1,179 @@
+---
+title: "Lists"
+---
+
+```{r setup}
+library(tidyverse)
+library(repurrrsive)
+library(broom)
+names(sw_people) <- sw_people %>% map_chr("name")
+
+# Toy data
+set.seed(1000)
+exams <- list(
+  student1 = round(runif(10, 50, 100)),
+  student2 = round(runif(10, 50, 100)),
+  student3 = round(runif(10, 50, 100)),
+  student4 = round(runif(10, 50, 100)),
+  student5 = round(runif(10, 50, 100))
+)
+
+extra_credit <- list(0, 0, 10, 10, 15)
+
+names(who) <- str_replace(names(who), "newrel", "new_rel")
+tb <-  
+  who %>%
+  gather("codes", "n", 5:60) %>%
+  separate(codes, c("new", "type", "sexage"), sep = "_") %>%
+  select(-new, -iso2, -iso3) %>%
+  separate(sexage, c("sex", "age"), sep = 1) %>%
+  drop_na(n)
+```
+
+# Lists
+
+## Your Turn 1
+
+Run the code below, which displays a list. What do you see?
+
+```{r}
+sw_people
+```
+
+## Quiz
+
+```{r}
+vec <- c(-2, -1, 0)
+lst <- list(-2, -1, 0)
+
+abs(vec)
+abs(lst)
+```
+
+## Your Turn 2
+
+Who was taller Anakin Skywalker or Darth Vader? 
+Use the RStudio Viewer to find the answer (in cm).
+
+*Hint: View() sw_people*
+
+```{r}
+
+```
+
+## Your Turn 3
+
+Here are two subsetting commands. Do they return the same values? Run the code chunks below to confirm.
+
+```{r}
+a_list <- list(num = c(8, 9), 
+               log = TRUE,    
+               cha = c("a", "b", "c"))
+```
+
+```{r}
+a_list["num"]
+```
+
+```{r}
+a_list[["num"]]
+```
+
+# Mapping
+
+## purrr
+
+
+## Your Turn 4
+
+Run the code in the chunk. What does it do?
+
+```{r}
+exams %>% map(mean)
+```
+
+## map shorthand
+
+
+## Your Turn 5
+
+Complete the code to apply the test below to every element of the list. Return the results as a vector.
+
+`length(<input> == 10)`
+
+```{r}
+exams %>% ______(_________________)
+```
+
+## Your Turn 6
+
+Recompute the grades by dropping the lowest score and then taking the mean of the rest, i.e. Return the results as a _double_ vector.
+
+`(sum(<input>) - min(<input>)) / 9`
+
+```{r}
+
+```
+
+
+## Your Turn 7
+
+Compute a final grade for each student, where the final grade is the average test score plus any `extra_credit` assigned to the student. Return the results as a double (i.e. numeric) vector.
+
+`mean(<exams>) + <extra_credit>`
+
+```{r}
+exams %>% 
+  _________(____________, ~________________)
+```
+
+# List Columns
+
+# Putting it all together
+
+Predict TB cases in 2020 for Afghanistan
+
+```{r}
+tb %>% 
+  filter(country == "Afghanistan") %>%
+  group_by(year) %>% 
+  summarise(n = sum(n)) %>% 
+  lm(n ~ year, data = .) %>% 
+  predict(newdata = tibble(year = 2020)) %>% 
+  round()
+```
+
+Predict TB cases in 2020 for each country
+
+```{r}
+tb_predictions <-
+  tb %>% 
+  group_by(country, year) %>% 
+  summarise(n = sum(n)) %>% 
+  nest() %>% 
+  mutate(model = map(data, ~lm(n ~ year, data = .))) %>%
+  mutate(pred = map_dbl(model, predict, tibble(year = 2020))) %>%
+  mutate(pred = round(pred))
+```
+
+Things that are easy to do:
+
+* Which countries will have the most cases?
+* What does the data look like for India?
+* How do the Korea's compare?
+* How good were the models?
+
+```{r}
+
+```
+
+
+***
+
+Take Aways
+
+* Use `View()` to inspect lists
+* Use `pluck()`, `[[ ]]`, or `$` to extract values from lists
+* Use purrr's `map()` functions to manipulate lists
+* Lists can be a column in a data frame
+* Tables are an organizational structure that you can manipulate.
