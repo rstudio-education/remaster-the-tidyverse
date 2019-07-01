@@ -1,0 +1,123 @@
+---
+title: "`r params$name`"
+output:
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    theme: readable
+params: 
+  name: "Garrett"
+---
+
+Column {data-width=200}
+-----------------------------------------------------------
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(babynames)
+library(glue)
+library(flexdashboard)
+
+name_data <- 
+  babynames %>% 
+  filter(name == params$name)
+
+most <- name_data %>% 
+  group_by(year) %>% 
+  summarise(n = sum(n)) %>% 
+  filter(n == max(n))
+
+sex_data <-
+  name_data %>% 
+  group_by(sex) %>% 
+  summarise(n = sum(n)) 
+
+sex <- sex_data %>% 
+  filter(n == max(n)) %>% 
+  pull("sex") %>% 
+  switch("M" = "boy's", "F" = "girl's")
+
+color <- if (sex == "boy's") "info" else "danger"
+```
+
+### {.value-box}
+
+```{r}
+valueBox(
+  value = params$name,
+  color = color
+)
+```
+
+### Total Children {.value-box}
+
+```{r}
+valueBox(
+  value = sum(name_data$n),
+  icon = "fa-area-chart",
+  color = color
+)
+```
+
+### Most Popular Year {.value-box}
+
+```{r}
+valueBox(
+  value = most$year,
+  icon = "fa-calendar",
+  color = color
+)
+```
+
+### Sex {.value-box}
+
+```{r}
+icon <- if (sex == "boy's") "fa-male" else "fa-female"
+
+valueBox(
+  value = sex,
+  icon = icon,
+  caption = glue("Usually a {sex} name"),
+  color = color
+)
+```
+
+### Popularity Meter
+
+```{r}
+gauge(
+  value = sum(name_data$n),
+  min = 0,
+  max = 5173828,
+  sectors = gaugeSectors(success = c(0, 1724609), 
+                         warning = c(1724610, 3449219), 
+                         danger = c(3449220, 5173828))
+)
+```
+
+### Gender Strength
+
+```{r}
+gauge(
+  value = round(max(sex_data$n) / sum(sex_data$n) * 100),
+  min = 0,
+  max = 100,
+  symbol = '%'
+)
+```
+
+Column {data-width=300}
+-----------------------------------------------------------
+
+### Popularity Over Time
+
+```{r echo = FALSE}
+name_data %>% 
+  ggplot() +
+    geom_ribbon(mapping = aes(x = year, ymax = prop, fill = sex), ymin = 0, alpha = 0.5) +
+    labs(title = glue("The proportion of boys and girls named {params$name}, 1880-2017"), 
+         caption = "Data from the US Social Security Administration",
+         y = "proportion") +
+    theme_bw() +
+    scale_fill_discrete(labels = c("Female", "Male"))
+```
+

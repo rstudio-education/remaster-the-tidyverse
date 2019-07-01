@@ -6,7 +6,7 @@ Please bring a laptop to class that has the following installed:
 * A recent version of RStudio Desktop (>=1.1.456), available for free at www.rstudio.com/download (RStudio Desktop Open Source License)
 * The R packages we will use, which you can install by connecting to the internet, opening RStudio, and running at the command line:
 
-install.packages(c("babynames", "mgcv", "nycflights13", "plotly", "rmarkdown", "tidyverse"))
+install.packages(c("babynames", "flexdashboard", "mgcv", "plotly", "rmarkdown", "tidyverse"))
 
 And don't forget your power cord!
 
