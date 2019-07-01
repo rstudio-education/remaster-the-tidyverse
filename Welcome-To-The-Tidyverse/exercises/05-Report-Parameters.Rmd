@@ -33,9 +33,14 @@ There have been **`r n`** children named `r params$name`. The name `r params$nam
 
 ```{r echo = FALSE}
 name_data %>% 
-  ggplot(mapping = aes(x = year, y = prop, color = sex)) +
-    geom_line() +
-    labs(title = glue("Proportion of children named {params$name}"))
+  ggplot() +
+    geom_ribbon(mapping = aes(x = year, ymax = prop, fill = sex), ymin = 0, alpha = 0.5) +
+    labs(title = glue("Popularity of the name {params$name}"), 
+         subtitle = glue("The proportion of boys and girls named {params$name}, 1880-2017"), 
+         caption = "Data from the US Social Security Administration",
+         y = "proportion") +
+    theme_bw() +
+    scale_fill_discrete(labels = c("Female", "Male"))
 ```
 
 

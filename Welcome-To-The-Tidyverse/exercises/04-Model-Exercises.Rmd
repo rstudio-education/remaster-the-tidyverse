@@ -52,7 +52,7 @@ Model `log(income)` against `education` and `height` and `sex`. Can you interpre
 
 ## Your Turn 5
 
-Add `+ geom_smooth(model = lm)` to the code below. What happens?
+Add `+ geom_smooth(method = lm)` to the code below. What happens?
 
 ```{r}
 wages %>%

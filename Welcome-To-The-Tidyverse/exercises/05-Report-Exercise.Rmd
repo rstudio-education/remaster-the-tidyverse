@@ -34,9 +34,14 @@ There have been **TODO** children named Garrett. The name Garrett was most popul
 
 ```{r}
 name_data %>% 
-  ggplot(mapping = aes(x = year, y = prop, color = sex)) +
-    geom_line() +
-    labs(title = "Proportion of children named Garrett")
+  ggplot() +
+    geom_ribbon(mapping = aes(x = year, ymax = prop, fill = sex), ymin = 0, alpha = 0.5) +
+    labs(title = "Popularity of the name Garrett", 
+         subtitle = "The proportion of boys and girls named Garrett, 1880-2017", 
+         caption = "Data from the US Social Security Administration",
+         y = "proportion") +
+    theme_bw() +
+    scale_fill_discrete(labels = c("Female", "Male"))
 ```
 
 

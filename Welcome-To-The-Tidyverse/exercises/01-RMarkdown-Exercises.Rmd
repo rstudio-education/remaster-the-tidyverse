@@ -56,7 +56,8 @@ By the way, you only need to use code comments _inside_ of code chunks. R knows 
 
 Have you noticed the funny highlighting that appears in this document? R Markdown treats text surrounded by *asterisks*, **double asterisks**, and `backticks` in special ways. It is R Markdown's way of saying that these words are in
 
-- *italics*
+- _italics_
+- *also italics*
 - **bold**, and
 - `code font`
 
