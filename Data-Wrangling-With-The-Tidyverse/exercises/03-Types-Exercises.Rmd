@@ -6,8 +6,6 @@ title: "Data Types"
 library(tidyverse)
 library(babynames)
 library(nycflights13)
-library(stringr)
-library(forcats)
 library(lubridate)
 library(hms)
 ```

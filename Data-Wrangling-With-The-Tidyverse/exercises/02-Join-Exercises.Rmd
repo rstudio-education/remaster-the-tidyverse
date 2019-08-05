@@ -69,9 +69,12 @@ flights %>%
 
 ## Your Turn 2
 
-Use `flights` and `airports` to compute the `distance` and average `arr_delay` by destination airport (names only, not codes).  Order by average delay, worst to best.
+Join `flights` and `airports` by `dest` and `faa`. 
 
-*Hint: use `first()` to get distance. It returns the first value in a column.*
+Then for each `name`, compute the `distance` from NYC and the average `arr_delay`.  *Hint: use `first()` to get the first value of distance.*
+
+Order by average delay, worst to best.
+
 *(Hint: Be sure to remove each `_` before running the code)*
 
 ```{r}
@@ -79,10 +82,11 @@ flights %>%
   filter(!is.na(arr_delay)) %>%
   ______(airports, __________________) %>%
   group_by(name) %>%
-  summarise(distance = _____________, 
+  _________(distance = _____________, 
                delay = _____________) %>%
   ______(_____(delay))
 ```
+
 
 # filtering joins
 
@@ -93,12 +97,14 @@ band %>% anti_join(instrument, by = "name")
 
 ## Your Turn 3
 
-How many airports in `airports` are serviced by flights originating in New York (i.e. flights in our dataset?) Notice that the column to join on is named `faa` in the **airports** data set and `dest` in the **flights** data set.
+How many airports in `airports` are serviced by flights in `flights`? (i.e. how many places can you fly to direct from New York?) 
+
+Notice that the column to join on is named `faa` in the **airports** data set and `dest` in the **flights** data set.
 
 ```{r}
 __________ %>%
- _________(_________, by = ___________) %>%
-  distinct(faa)
+ _____________________________ %>%
+  select(faa)
 ```
 
 
