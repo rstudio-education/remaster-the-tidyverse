@@ -11,14 +11,18 @@ library(glue)
 
 name_data <- 
   babynames %>% 
-  filter(name == params$name)
+  filter(name == params$name) %>% 
+  mutate(sex = case_when(sex == "M" ~ "Male", 
+                         sex == "F" ~ "Female"))
 
 n <- sum(name_data$n)
 
 most <- name_data %>% 
-  group_by(year) %>% 
-  summarise(n = sum(n)) %>% 
   filter(n == max(n))
+
+most_sex <- most %>% 
+  pull("sex") %>% 
+  switch("Male" = "boys", "Female" = "girls")
 
 sex <-
   name_data %>% 
@@ -26,10 +30,10 @@ sex <-
   summarise(n = sum(n)) %>% 
   filter(n == max(n)) %>% 
   pull("sex") %>% 
-  switch("M" = "boy's", "F" = "girl's")
+  switch("Male" = "boy's", "Female" = "girl's")
 ```
 
-There have been **`r n`** children named `r params$name`. The name `r params$name` was most popular in `r most$year`, when `r most$n` children were named `r params$name`. `r params$name` is traditionally a `r sex` name.
+There have been **`r n`** children named `r params$name`. The name `r params$name` was most popular in `r most$year`, when there were `r most$n` `r most_sex` named `r params$name`. `r params$name` is traditionally a `r sex` name.
 
 ```{r echo = FALSE}
 name_data %>% 
@@ -39,8 +43,7 @@ name_data %>%
          subtitle = glue("The proportion of boys and girls named {params$name}, 1880-2017"), 
          caption = "Data from the US Social Security Administration",
          y = "proportion") +
-    theme_bw() +
-    scale_fill_discrete(labels = c("Female", "Male"))
+    theme_bw()
 ```
 
 

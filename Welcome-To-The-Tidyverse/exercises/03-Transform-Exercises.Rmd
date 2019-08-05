@@ -68,7 +68,7 @@ Use `filter`, `babynames`, and the logical operators to find:
 
 ## Your Turn 4
 
-Use Boolean operators to alter the code below to return only the rows that contain:
+Use Boolean operators to return only the rows that contain:
 
 * _Boys_ named Sue  
 * Names that were used by exactly 5 or 6 children in 1880  
@@ -148,18 +148,30 @@ Use `group_by()` to calculate and then plot the total number of children born ea
 ## Your Turn 10
 
 Fill in the blanks to: 
-Derive each name's rank _within its year and sex_. 
-And then compute the median rank _for each combination of name and sex_, and arrange the results from highest median rank to lowest.
+Rank each name _within its year and sex_. 
 
 *(Hint: Be sure to remove each `_` before running the code)*
 
 ```{r}
 babynames %>% 
   group_by(____, ____) %>% 
-  mutate(rank = ________(____(prop))) %>% 
+  ______(rank = min_rank(____(prop)))
+```
+
+## Your Turn 11
+
+Fill in the blanks to: 
+Compute the median of the ranks for each name (i.e., _for each combination of name and sex_). Arrange the results from highest median rank to lowest.
+
+*(Hint: Be sure to remove each `_` before running the code)*
+
+```{r}
+babynames %>% 
+  group_by(year, sex) %>% 
+  mutate(rank = min_rank(desc(prop))) %>% 
   group_by(____, ____) %>% 
-  ________(score = ______(_____)) %>% 
-  arrange(score)
+  ________(median_rank = ______(_____)) %>% 
+  arrange(median_rank)
 
 ```
 

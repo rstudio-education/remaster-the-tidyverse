@@ -73,7 +73,7 @@ Use the help page for `geom_histogram` to make the bins 2 units wide.
 
 ## Your Turn 6
 
-Make a bar chart `hwy` colored by `class`. Use the help page for `geom_bar` to choose a "color" aesthetic for class.
+Make a bar chart `class` colored by `class`. Use the help page for `geom_bar` to choose a "color" aesthetic for class.
 
 ```{r}
 

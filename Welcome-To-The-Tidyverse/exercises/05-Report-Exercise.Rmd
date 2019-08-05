@@ -8,17 +8,22 @@ library(babynames)
 
 name_data <- 
   babynames %>% 
-  filter(name == "Garrett")
+  filter(name == "Garrett") %>% 
+  mutate(sex = case_when(sex == "M" ~ "Male", 
+                         sex == "F" ~ "Female"))
 
 # Total number of children
 n <- sum(name_data$n)
 
 # most$year is most popular year
 # most$n is the number of children that year
+# most_sex is whether those children were boys or girls
 most <- name_data %>% 
-  group_by(year) %>% 
-  summarise(n = sum(n)) %>% 
   filter(n == max(n))
+
+most_sex <- most %>% 
+  pull("sex") %>% 
+  switch("Male" = "boys", "Female" = "girls")
 
 # Has the name been a boy's or girl's name?
 sex <-
@@ -27,10 +32,10 @@ sex <-
   summarise(n = sum(n)) %>% 
   filter(n == max(n)) %>% 
   pull("sex") %>% 
-  switch("M" = "boy's", "F" = "girl's")
+  switch("Male" = "boy's", "Female" = "girl's")
 ```
 
-There have been **TODO** children named Garrett. The name Garrett was most popular in TODO, when TODO children were named Garrett. Garrett is traditionally a TODO name.
+There have been **TODO** children named Garrett. The name Garrett was most popular in TODO, when TODO TODO were named Garrett. Garrett is traditionally a TODO name.
 
 ```{r}
 name_data %>% 
@@ -40,8 +45,7 @@ name_data %>%
          subtitle = "The proportion of boys and girls named Garrett, 1880-2017", 
          caption = "Data from the US Social Security Administration",
          y = "proportion") +
-    theme_bw() +
-    scale_fill_discrete(labels = c("Female", "Male"))
+    theme_bw()
 ```
 
 

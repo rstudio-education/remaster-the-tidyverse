@@ -5,7 +5,7 @@ output:
     orientation: columns
     theme: readable
 params: 
-  name: "Garrett"
+  name: "Fox"
 ---
 
 Column {data-width=200}
@@ -19,11 +19,12 @@ library(flexdashboard)
 
 name_data <- 
   babynames %>% 
-  filter(name == params$name)
+  filter(name == params$name) %>% 
+  complete(year = 1880:2017, sex, name, fill = list(prop = 0, n = 0)) %>%
+  mutate(sex = case_when(sex == "M" ~ "Male", 
+                         sex == "F" ~ "Female"))
 
 most <- name_data %>% 
-  group_by(year) %>% 
-  summarise(n = sum(n)) %>% 
   filter(n == max(n))
 
 sex_data <-
@@ -34,7 +35,7 @@ sex_data <-
 sex <- sex_data %>% 
   filter(n == max(n)) %>% 
   pull("sex") %>% 
-  switch("M" = "boy's", "F" = "girl's")
+  switch("Male" = "boy's", "Female" = "girl's")
 
 color <- if (sex == "boy's") "info" else "danger"
 ```
@@ -117,7 +118,6 @@ name_data %>%
     labs(title = glue("The proportion of boys and girls named {params$name}, 1880-2017"), 
          caption = "Data from the US Social Security Administration",
          y = "proportion") +
-    theme_bw() +
-    scale_fill_discrete(labels = c("Female", "Male"))
+    theme_bw()
 ```
 
