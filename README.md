@@ -32,7 +32,7 @@ On the day of the course:
 1. Demonstrate what will happen when they do. It will take ~35 seconds for everyone's project to open.
 1. Have students immediately click "Save a Permanent Copy" at the top of their project.
 
-At this point, each student will have an indentical instance of R and RStudio to run their exercises in. They will also have access to all of the course materials, which are included in the project. You can show students how to download these materials to their project locally (if they wish) when prompted by the slides. Students will have access to their permanent copies of the RStudio Cloud project, and the work they did therein, forever. Like most things **RStudio Cloud no longer supports support Internet Explorer.**
+At this point, each student will have an indentical instance of R and RStudio to run their exercises in. They will also have access to all of the course materials, which are included in the project. You can show students how to download these materials to their project locally (if they wish) when prompted by the slides. Students will have access to their permanent copies of the RStudio Cloud project, and the work they did therein, forever. Like most things **RStudio Cloud no longer supports Internet Explorer.**
 
 Click the links below to see example RStudio Cloud projects for recent versions of each of the workshops:
 
