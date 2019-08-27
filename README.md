@@ -49,7 +49,7 @@ A small number of students will not be able to log on to the internet without he
 
 # Other tips
 
-1. I usually play a [looping slide show](/Welcome-To-The-Tidyverse/keynotes/00-Preclass-Loop) before class. It can let students know they are in the right place, remind them to connect to the wireless, or do some useful pre-teaching. It's a bit like arriving early to the movies—but with fewer trivia questions.
+1. I usually play a [looping slide show](https://github.com/rstudio-education/remaster-the-tidyverse/blob/master/Welcome-To-The-Tidyverse/keynotes/00-Preclass-loop.key) before class. It can let students know they are in the right place, remind them to connect to the wireless, or do some useful pre-teaching. It's a bit like arriving early to the movies—but with fewer trivia questions.
 1. Don't neglect the beginning warm up activity where students talk to each other. A lively discussion at the start of the day will set the tone for the rest of the day. I notice that students are much more engaged, much more talkative, and ask more questions if I begin the day with some sort of free-for-all. In short, it makes class more fun to teach. If you find yourself starting the second day in the middle of an unfinished unit, be sure to insert a warm up meet and re-greet discussion at the start of class—or don't and see what I'm talking about.
 1. The timers end with a beep. If it is audible, it will help you regain student attention at the end of an exercise, especially if the exercise involves discussion.
 1. Slides are cheap, so I use a lot of them. Don't feel like you need to dwell on each slide—there's no time for that.
