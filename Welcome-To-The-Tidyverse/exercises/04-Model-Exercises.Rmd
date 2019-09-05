@@ -60,30 +60,18 @@ wages %>%
      geom_point(alpha = 0.1)
 ```
 
-## Help Me
-
-```{r}
-
-```
-
 
 ## Your Turn 6
 
-Use `gather_residuals` to complete the code below, which compares the residuals of all three models, `mod_h`, `mod_eh`, and `mod_ehs`.
+Use `add_predictions` to make the plot below.
 
 ```{r warning = FALSE, message = FALSE}
 
-# In case you haven't made the three models
-mod_h <- wages %>% lm(log(income) ~ height, data = .)
-mod_eh <- wages %>% lm(log(income) ~ education + height, data = .)
+# In case you haven't made the ehs model
 mod_ehs <- wages %>% lm(log(income) ~ education + height + sex, data = .)
 
-# Be sure to remove or comment out each _ before running the code
-wages %>% 
-  _____________(______, ______, ______) %>% 
-  ggplot() ___ 
-    geom_histogram(aes(x = ______)) +
-    facet_grid(_____ ~ .)
+# Make plot here
+
 ```
 
 ***

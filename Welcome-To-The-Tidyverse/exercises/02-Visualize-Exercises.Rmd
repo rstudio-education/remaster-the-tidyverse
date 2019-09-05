@@ -46,8 +46,16 @@ q + facet_grid(drv ~ cyl)
 q + facet_wrap(~ class)
 ```
 
-
 ## Your Turn 3
+
+Add the black code to your graph. What does it do?
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(displ, hwy, color = class))
+```
+
+## Your Turn 4
 
 Replace this scatterplot with one that draws boxplots. Use the cheatsheet. Try your best guess.
 
@@ -55,7 +63,7 @@ Replace this scatterplot with one that draws boxplots. Use the cheatsheet. Try y
 ggplot(mpg) + geom_point(aes(class, hwy))
 ```
 
-## Your Turn 4
+## Your Turn 5
 
 Make a histogram of the `hwy` variable from `mpg`. Hint: do not supply a y variable.
 
@@ -63,7 +71,7 @@ Make a histogram of the `hwy` variable from `mpg`. Hint: do not supply a y varia
 
 ```
 
-## Your Turn 5
+## Your Turn 6
 
 Use the help page for `geom_histogram` to make the bins 2 units wide.
 
@@ -71,7 +79,7 @@ Use the help page for `geom_histogram` to make the bins 2 units wide.
 
 ```
 
-## Your Turn 6
+## Your Turn 7
 
 Make a bar chart `class` colored by `class`. Use the help page for `geom_bar` to choose a "color" aesthetic for class.
 
@@ -100,14 +108,6 @@ p <- ggplot(mpg) +
 
 library(plotly)
 ggplotly(p)
-```
-
-## Your Turn 7
-
-What does `getwd()` return?
-
-```{r}
-
 ```
 
 ***
