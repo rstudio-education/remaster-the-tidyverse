@@ -10,7 +10,7 @@ This repository contains editable class materials built by Garrett Grolemund for
     
     An introduction to wrangling lists and tabular data in R with the [tidyr](https://tidyr.tidyverse.org/), [stringr](https://stringr.tidyverse.org/), [forcats](https://forcats.tidyverse.org/), [lubridate](https://lubridate.tidyverse.org/), and [purrr](https://purrr.tidyverse.org/) packages. The course focuses on creating and using tidy tables and is designed to be a sequel to _Welcome to the Tidyverse_.
     
-The workshops can be taught sequentially as a two day workshop
+The workshops can be taught sequentially as a two day workshop. Together, the two workshops are an update to [_Master the Tidyverse_](https://github.com/rstudio-education/master-the-tidyverse), an award winning workshop taught by Garrett.
 
 Each course directory contains the editable Apple Keynote slides that I present during class, as well as the R Markdown files that I give to the students. The R Markdown files contain the scaffolded exercises that students work through during class. All of the material is copyrighted under the [Creative Commons BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) copyright to make the material easy to reuse. I encourage you to reuse it and adapt it to your own courses as you like! **Sorry, I do not work in PowerPoint and will not be providing PowerPoint versions of the slides.**
 
